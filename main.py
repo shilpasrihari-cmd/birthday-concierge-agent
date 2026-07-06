@@ -40,7 +40,13 @@ def main():
 
     food_order = state.get("food_order")
     if food_order:
-        print(f"Food: {food_order.menu}, Servings: {food_order.servings}, Status: {food_order.status}")
+        import sys
+        msg = f"Food: {food_order.menu}, Servings: {food_order.servings}, Status: {food_order.status}"
+        try:
+            print(msg)
+        except UnicodeEncodeError:
+            print(msg.encode(sys.stdout.encoding or 'ascii', errors='replace').decode(sys.stdout.encoding or 'ascii'))
+
 
 
 if __name__ == "__main__":
